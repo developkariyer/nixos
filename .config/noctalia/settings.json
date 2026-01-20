@@ -39,6 +39,9 @@
         "marginHorizontal": 4,
         "marginVertical": 4,
         "monitors": [
+            "eDP-1",
+            "DP-5",
+            "DP-3"
         ],
         "outerCorners": true,
         "position": "top",

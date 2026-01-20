@@ -6,6 +6,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # DDC/CI backlight control
+  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+  boot.kernelModules = [ "ddcci_backlight" ];
+
   # Hardware features
   hardware.i2c.enable = true;
   hardware.graphics = {
