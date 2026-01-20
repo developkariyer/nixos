@@ -16,4 +16,13 @@
   # Power management
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
+
+  # Audio: PipeWire
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+  services.pulseaudio.enable = false;
 }
