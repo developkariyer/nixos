@@ -113,7 +113,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+E hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     // Mod+D hotkey-overlay-title="App Launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "emit" "launcher"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -144,6 +144,10 @@ binds {
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
+    Mod+A     { focus-column-left; }
+    Mod+S     { focus-window-or-workspace-down; }
+    Mod+W     { focus-window-or-workspace-up; }
+    Mod+D     { focus-column-right; }
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
@@ -153,6 +157,10 @@ binds {
     Mod+Ctrl+J     { move-window-down; }
     Mod+Ctrl+K     { move-window-up; }
     Mod+Ctrl+L     { move-column-right; }
+    Mod+Ctrl+A     { move-column-left; }
+    Mod+Ctrl+S     { move-window-down; }
+    Mod+Ctrl+W     { move-window-up; }
+    Mod+Ctrl+D     { move-column-right; }
 
     // Mod+J     { focus-window-or-workspace-down; }
     // Mod+K     { focus-window-or-workspace-up; }
@@ -172,6 +180,10 @@ binds {
     Mod+Shift+J     { focus-monitor-down; }
     Mod+Shift+K     { focus-monitor-up; }
     Mod+Shift+L     { focus-monitor-right; }
+    Mod+Shift+A     { focus-monitor-left; }
+    Mod+Shift+S     { focus-monitor-down; }
+    Mod+Shift+W     { focus-monitor-up; }
+    Mod+Shift+D     { focus-monitor-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
@@ -181,6 +193,10 @@ binds {
     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+A     { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+S     { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+W     { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+D     { move-column-to-monitor-right; }
 
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
