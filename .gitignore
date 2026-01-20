@@ -1,0 +1,16 @@
+# Application data (symlinked from home)
+.config/Antigravity/
+.config/Bitwarden/
+.config/google-chrome/
+.config/mozilla/
+.config/Signal/
+.config/chromium/
+.config/draw.io/
+.config/go/
+.config/libreoffice/
+.config/JetBrains/
+
+
+# OpenCode plugin cache
+.config/opencode/node_modules/
+.config/opencode/bun.lock

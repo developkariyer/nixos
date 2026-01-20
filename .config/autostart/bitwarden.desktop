@@ -1,0 +1,8 @@
+[Desktop Entry]
+  Type=Application
+  Version=2025.12.0
+  Name=Bitwarden
+  Comment=Bitwarden startup script
+  Exec=/nix/store/gfyxyx789dzkjgwb63qgix2vq3w5fs9p-bitwarden-desktop-2025.12.0/bin/bitwarden
+  StartupNotify=false
+  Terminal=false
