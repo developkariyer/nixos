@@ -9,7 +9,7 @@
 .config/go/
 .config/libreoffice/
 .config/JetBrains/
-
+.config/Ferdium/
 
 # OpenCode plugin cache
 .config/opencode/node_modules/

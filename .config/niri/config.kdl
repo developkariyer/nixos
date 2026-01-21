@@ -41,7 +41,7 @@ output "DP-3" {
 
 output "eDP-1" {
   mode "1920x1080"
-  scale 0.9
+  scale 1.0
   transform "normal"
   position x=7680 y=1080
 }
@@ -135,7 +135,20 @@ binds {
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
+    // DP-3 brightness (DDC/CI bus 10)
+    Mod+F11 { spawn "ddcutil" "--bus=10" "setvcp" "10" "-" "10"; }
+    Mod+F12 { spawn "ddcutil" "--bus=10" "setvcp" "10" "+" "10"; }
+
+    // DP-5 brightness (DDC/CI bus 11)
+    Mod+Shift+F11 { spawn "ddcutil" "--bus=11" "setvcp" "10" "-" "10"; }
+    Mod+Shift+F12 { spawn "ddcutil" "--bus=11" "setvcp" "10" "+" "10"; }
+
+    // Laptop backlight (intel_backlight)
+    Mod+Ctrl+F11 { spawn "brightnessctl" "-d" "intel_backlight" "set" "5%-"; }
+    Mod+Ctrl+F12 { spawn "brightnessctl" "-d" "intel_backlight" "set" "+5%"; }
+
     Mod+O repeat=false { toggle-overview; }
+    ISO_Level3_Shift+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }
 
@@ -187,6 +200,22 @@ binds {
     Mod+Shift+S     { focus-monitor-down; }
     Mod+Shift+W     { focus-monitor-up; }
     Mod+Shift+D     { focus-monitor-right; }
+
+    // Single right-hand navigation (AltGr = ISO_Level3_Shift)
+    ISO_Level3_Shift+Up    { focus-window-or-workspace-up; }
+    ISO_Level3_Shift+Down  { focus-window-or-workspace-down; }
+    ISO_Level3_Shift+Left  { focus-column-left; }
+    ISO_Level3_Shift+Right { focus-column-right; }
+
+    ISO_Level3_Shift+Shift+Up    { focus-monitor-up; }
+    ISO_Level3_Shift+Shift+Down  { focus-monitor-down; }
+    ISO_Level3_Shift+Shift+Left  { focus-monitor-left; }
+    ISO_Level3_Shift+Shift+Right { focus-monitor-right; }
+
+    ISO_Level3_Shift+Ctrl+Up    { move-window-up; }
+    ISO_Level3_Shift+Ctrl+Down  { move-window-down; }
+    ISO_Level3_Shift+Ctrl+Left  { move-column-left; }
+    ISO_Level3_Shift+Ctrl+Right { move-column-right; }
 
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }

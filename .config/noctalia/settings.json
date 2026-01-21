@@ -81,17 +81,17 @@
                     "usePrimaryColor": false
                 },
                 {
-                    "compactMode": true,
+                    "compactMode": false,
                     "diskPath": "/",
                     "id": "SystemMonitor",
                     "showCpuTemp": true,
                     "showCpuUsage": true,
-                    "showDiskUsage": false,
+                    "showDiskUsage": true,
                     "showGpuTemp": false,
-                    "showLoadAverage": false,
-                    "showMemoryAsPercent": false,
+                    "showLoadAverage": true,
+                    "showMemoryAsPercent": true,
                     "showMemoryUsage": true,
-                    "showNetworkStats": false,
+                    "showNetworkStats": true,
                     "useMonospaceFont": true,
                     "usePrimaryColor": false
                 },
@@ -134,7 +134,8 @@
                     "pinned": [
                         "nm-applet",
                         "Signal Desktop",
-                        "com.github.xeco23.WasIstLos.Tray"
+                        "com.github.xeco23.WasIstLos.Tray",
+                        "Ferdium"
                     ]
                 },
                 {
