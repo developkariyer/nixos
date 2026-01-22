@@ -1,16 +1,4 @@
-# Application data (symlinked from home)
-.config/Antigravity/
-.config/Bitwarden/
-.config/google-chrome/
-.config/mozilla/
-.config/Signal/
-.config/chromium/
-.config/draw.io/
-.config/go/
-.config/libreoffice/
-.config/JetBrains/
-.config/Ferdium/
-
-# OpenCode plugin cache
-.config/opencode/node_modules/
-.config/opencode/bun.lock
+# Ignore all .config except noctalia and niri
+.config/*
+!.config/noctalia/
+!.config/niri/
