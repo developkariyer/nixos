@@ -25,6 +25,7 @@ input {
     focus-follows-mouse
 }
 
+
 output "DP-5" {
   mode "3840x2160"
   scale 1.0
