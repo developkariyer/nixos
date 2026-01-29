@@ -11,7 +11,7 @@
     glab
 
     # Antigravity IDE
-    inputs.antigravity-nix.packages.${pkgs.system}.default
+    #inputs.antigravity-nix.packages.${pkgs.system}.default
 
     # OpenCode AI terminal assistant
     opencode
