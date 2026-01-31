@@ -7,5 +7,8 @@
     imv
     zathura
     libreoffice-fresh
+    adwaita-icon-theme
+    hicolor-icon-theme
+    papirus-icon-theme
   ];
 }

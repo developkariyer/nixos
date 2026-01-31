@@ -19,6 +19,7 @@
   # Wayland environment
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    SAL_USE_VCLPLUGIN = "gtk3";
   };
 
   # Fonts
@@ -28,4 +29,9 @@
     corefonts
     vista-fonts
   ];
+
+  # Enable dconf
+  programs.dconf.enable = true;
+
+
 }
