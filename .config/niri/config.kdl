@@ -26,14 +26,16 @@ input {
 }
 
 
-output "DP-5" {
-  mode "3840x2160"
+//output "DP-5" {
+//  mode "3840x2160"
+output "ASUSTek COMPUTER INC ASUS VG289Q1A RBLMTF120890" {
+  mode "3840x2160@59.996"
   scale 1.0
   transform "normal"
   position x=3840 y=0
 }
 
-output "DP-3" {
+output "DP-4" {
   mode "3840x2160"
   scale 1.0
   transform "normal"
