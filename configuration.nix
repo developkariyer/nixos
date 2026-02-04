@@ -11,6 +11,7 @@
     ./modules/networking.nix
     ./modules/services.nix
     ./modules/user.nix
+    ./modules/android.nix
 
     # Packages by category
     ./modules/packages/core.nix
