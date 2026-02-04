@@ -5,8 +5,8 @@
   # Accept Android SDK license (required for build)
   nixpkgs.config.android_sdk.accept_license = true;
 
-  # Android Studio with full SDK bundle (platforms 28-34, emulator, NDK)
-  environment.systemPackages = [ pkgs.android-studio-full ];
+  # Android Studio (minimal - use SDK Manager for components)
+  environment.systemPackages = [ pkgs.android-studio ];
 
   # KVM access for emulator hardware acceleration
   users.users.ubuntu.extraGroups = [ "kvm" ];
