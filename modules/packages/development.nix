@@ -21,17 +21,8 @@
     gopls
     delve
 
-    # PHP development
-    (php.buildEnv {
-      extensions = ({ enabled, all }: enabled ++ (with all; [
-        xdebug
-        imagick
-        redis
-        bcmath
-        intl
-      ]));
-    })
-    php84Packages.composer
+    # direnv — auto-activates project devShells
+    direnv
 
     # Containers
     docker-compose
