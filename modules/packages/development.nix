@@ -21,9 +21,6 @@
     gopls
     delve
 
-    # direnv — auto-activates project devShells
-    direnv
-
     # Containers
     docker-compose
 

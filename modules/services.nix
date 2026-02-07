@@ -10,4 +10,7 @@
 
   # Docker
   virtualisation.docker.enable = true;
+
+  # direnv — auto-activates project devShells on cd
+  programs.direnv.enable = true;
 }
