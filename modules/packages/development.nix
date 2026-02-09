@@ -9,6 +9,7 @@
     # Version control
     git
     glab
+    gh
 
     # Antigravity IDE
     inputs.antigravity-nix.packages.${pkgs.system}.default

@@ -154,7 +154,7 @@
                     ],
                     "chevronColor": "none",
                     "colorizeIcons": false,
-                    "drawerEnabled": true,
+                    "drawerEnabled": false,
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
@@ -336,6 +336,7 @@
         "iRadiusRatio": 1,
         "language": "",
         "lockOnSuspend": true,
+        "lockScreenAnimations": false,
         "lockScreenCountdownDuration": 10000,
         "radiusRatio": 1,
         "scaleRatio": 1,

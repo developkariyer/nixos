@@ -57,6 +57,14 @@ layout {
         proportion 0.5
         proportion 0.66667
     }
+    preset-window-heights {
+        proportion 0.16667
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.83333
+        proportion 1.0
+    }
     default-column-width { proportion 0.5; }
     focus-ring {
         width 4
@@ -339,4 +347,8 @@ binds {
     Ctrl+Alt+Delete { quit; }
 
     Mod+Shift+P { power-off-monitors; }
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
 }
