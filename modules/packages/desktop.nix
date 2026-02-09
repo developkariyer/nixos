@@ -10,5 +10,6 @@
     adwaita-icon-theme
     hicolor-icon-theme
     papirus-icon-theme
+    slack
   ];
 }
