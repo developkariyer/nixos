@@ -30,6 +30,7 @@
 
     # Utilities
     jq
+    gnumake
     drawio
   ];
 }
