@@ -7,6 +7,7 @@
     imv
     zathura
     libreoffice-fresh
+    gimp
     adwaita-icon-theme
     hicolor-icon-theme
     papirus-icon-theme
