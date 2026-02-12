@@ -9,6 +9,11 @@
   # DDC/CI backlight control
   boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   boot.kernelModules = [ "ddcci_backlight" ];
+  boot.kernelParams = [
+    "i915.enable_psr = 0"
+    "i915.enable_dc = 0"
+    "usbcode.autosuspend=-1"
+  ];
 
   # Hardware features
   hardware.i2c.enable = true;
