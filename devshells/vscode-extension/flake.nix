@@ -16,8 +16,6 @@
           pkgs.nodejs_20
           pkgs.nodePackages.typescript
           pkgs.nodePackages.typescript-language-server
-          pkgs.nodePackages.yo
-          pkgs.nodePackages.generator-code
           pkgs.vsce
           pkgs.esbuild
         ];
@@ -28,7 +26,7 @@
           echo "  tsc:   $(tsc --version)"
           echo "  vsce:  $(vsce --version 2>/dev/null || echo 'available')"
           echo ""
-          echo "Scaffold new extension:  yo code"
+          echo "Scaffold new extension:  npx --yes yo generator-code"
           echo "Package extension:       vsce package"
           echo "Publish extension:       vsce publish"
         '';
