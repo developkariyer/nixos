@@ -33,6 +33,13 @@
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "26.05";
 }

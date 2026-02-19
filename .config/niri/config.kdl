@@ -100,6 +100,11 @@ spawn-at-startup "noctalia-shell"
 
 spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
 
+spawn-at-startup "bitwarden"
+spawn-at-startup "ferdium"
+spawn-at-startup "signal-desktop"
+spawn-at-startup "slack"
+
 hotkey-overlay {
 }
 

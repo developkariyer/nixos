@@ -11,6 +11,15 @@
   boot.kernelModules = [ "ddcci_backlight" ];
   boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_dc=0" "usbcode.autosuspend=-1" ];
 
+  # Swap file for hibernation (must be >= RAM)
+  swapDevices = [{
+    device = "/swapfile";
+    size = 34 * 1024;  # 34 GB in MB
+  }];
+
+  # Resume from swap for hibernation (root partition that contains /swapfile)
+  boot.resumeDevice = "/dev/disk/by-uuid/cbd3654c-de9f-46eb-820f-5180ae5d96be";
+
   # Hardware features
   hardware.i2c.enable = true;
   hardware.graphics = {
