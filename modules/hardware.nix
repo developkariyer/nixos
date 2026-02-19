@@ -9,7 +9,7 @@
   # DDC/CI backlight control
   boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   boot.kernelModules = [ "ddcci_backlight" ];
-  boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_dc=0" "usbcode.autosuspend=-1" ];
+  boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_dc=0" "usbcode.autosuspend=-1" "resume_offset=42043392" ];
 
   # Swap file for hibernation (must be >= RAM)
   swapDevices = [{

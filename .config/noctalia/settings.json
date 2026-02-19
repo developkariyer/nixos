@@ -79,7 +79,6 @@
                     "labelMode": "index",
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
-                    "reverseScroll": false,
                     "showApplications": false,
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": true,
@@ -193,6 +192,7 @@
                     "textColor": "none"
                 },
                 {
+                    "applyToAllMonitors": false,
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Brightness",
@@ -320,6 +320,7 @@
         "colorizeIcons": false,
         "deadOpacity": 0.6,
         "displayMode": "auto_hide",
+        "dockType": "floating",
         "enabled": true,
         "floatingRatio": 1,
         "inactiveIndicators": false,
@@ -330,6 +331,8 @@
         ],
         "pinnedStatic": false,
         "position": "bottom",
+        "showFrameIndicator": true,
+        "sitOnFrame": false,
         "size": 1
     },
     "general": {
@@ -379,7 +382,9 @@
         "lockScreenMonitors": [
         ],
         "lockScreenTint": 0,
+        "passwordChars": false,
         "radiusRatio": 1,
+        "reverseScroll": false,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
@@ -437,10 +442,12 @@
     },
     "notifications": {
         "backgroundOpacity": 1,
+        "clearDismissed": true,
         "criticalUrgencyDuration": 15,
         "density": "default",
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
+        "enableMarkdown": false,
         "enableMediaToast": false,
         "enabled": true,
         "location": "top_right",
