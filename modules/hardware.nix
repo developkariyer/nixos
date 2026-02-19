@@ -31,6 +31,16 @@
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
+  # Disable S4 wakeup sources that abort hibernation
+  # Writing to /proc/acpi/wakeup toggles the state (enabled → disabled)
+  powerManagement.powerDownCommands = ''
+    for dev in GLAN RP01 PXSX RP06; do
+      if grep -q "$dev.*enabled" /proc/acpi/wakeup; then
+        echo "$dev" > /proc/acpi/wakeup
+      fi
+    done
+  '';
+
   # Audio: PipeWire
   services.pipewire = {
     enable = true;
