@@ -31,14 +31,22 @@
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
-  # Disable S4 wakeup sources that abort hibernation
-  # Writing to /proc/acpi/wakeup toggles the state (enabled → disabled)
+  # Disable wakeup sources that abort hibernation
   powerManagement.powerDownCommands = ''
+    # 1) ACPI wakeup table: toggle enabled S4 sources off
     for dev in GLAN RP01 PXSX RP06; do
       if grep -q "$dev.*enabled" /proc/acpi/wakeup; then
         echo "$dev" > /proc/acpi/wakeup
       fi
     done
+
+    # 2) USB devices have independent wakeup via sysfs (e.g. iPad)
+    for wakeup in /sys/bus/usb/devices/*/power/wakeup; do
+      echo disabled > "$wakeup" 2>/dev/null || true
+    done
+
+    # 3) XHC (USB controller) PCI-level wakeup
+    echo disabled > /sys/bus/pci/devices/0000:00:14.0/power/wakeup 2>/dev/null || true
   '';
 
   # Audio: PipeWire
