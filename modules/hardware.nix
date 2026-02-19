@@ -11,6 +11,15 @@
   boot.kernelModules = [ "ddcci_backlight" ];
   boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_dc=0" "usbcode.autosuspend=-1" "resume_offset=42043392" ];
 
+  # Blacklist intel_hid: known to fire spurious wakeup events on Dell laptops
+  boot.blacklistedKernelModules = [ "intel_hid" ];
+
+  # Use 'shutdown' hibernate mode instead of 'platform'
+  # This bypasses Dell's ACPI firmware which generates wakeup events during S4
+  systemd.tmpfiles.rules = [
+    "w /sys/power/disk - - - - shutdown"
+  ];
+
   # Swap file for hibernation (must be >= RAM)
   swapDevices = [{
     device = "/swapfile";
