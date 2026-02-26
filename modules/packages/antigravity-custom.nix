@@ -37,7 +37,7 @@
 
 let
   pname = "google-antigravity";
-  version = "1.19.4-4641795031302144";
+  version = "1.19.5-5117559161880576";
 
   isAarch64 = stdenv.hostPlatform.system == "aarch64-linux";
 
@@ -57,7 +57,7 @@ let
 
   src = fetchurl {
     url = "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/${version}/linux-x64/Antigravity.tar.gz";
-    sha256 = "sha256-0Fz0ahjvzGC6AKGbNdczdk0MPTlkhchFylxWPp+4e70=";
+    sha256 = "sha256-xGeNs24UwQCKGp4d3tj7jYdurqSXkmjYQF6f2Vwckm4=";
   };
 
   chrome-wrapper = writeShellScript "${browserCommand}-with-profile" ''
