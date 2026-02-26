@@ -46,6 +46,7 @@
         "density": "default",
         "displayMode": "always_visible",
         "floating": false,
+        "fontScale": 1,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -61,8 +62,10 @@
         "screenOverrides": [
         ],
         "showCapsule": true,
+        "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": false,
+        "widgetSpacing": 6,
         "widgets": {
             "center": [
                 {
@@ -206,16 +209,6 @@
                     "icon": "noctalia",
                     "id": "ControlCenter",
                     "useDistroLogo": false
-                },
-                {
-                    "defaultSettings": {
-                        "customColor": "none",
-                        "showConditionIcon": true,
-                        "showTempUnit": true,
-                        "showTempValue": true,
-                        "tooltipOption": "everything"
-                    },
-                    "id": "plugin:weather-indicator"
                 }
             ]
         }
@@ -312,7 +305,8 @@
         "enabled": false,
         "gridSnap": false,
         "monitorWidgets": [
-        ]
+        ],
+        "overviewEnabled": true
     },
     "dock": {
         "animationSpeed": 1,
@@ -323,7 +317,13 @@
         "dockType": "floating",
         "enabled": true,
         "floatingRatio": 1,
+        "groupApps": false,
+        "groupClickAction": "cycle",
+        "groupContextMenuMode": "extended",
+        "groupIndicatorStyle": "dots",
         "inactiveIndicators": false,
+        "launcherIconColor": "none",
+        "launcherPosition": "end",
         "monitors": [
         ],
         "onlySameOutput": true,
@@ -332,6 +332,7 @@
         "pinnedStatic": false,
         "position": "bottom",
         "showFrameIndicator": true,
+        "showLauncherIcon": false,
         "sitOnFrame": false,
         "size": 1
     },
