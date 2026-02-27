@@ -4,7 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     antigravity-nix.url = "github:jacopone/antigravity-nix";
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    # Pinned: d4941da has QML regression ("Non-existent attached object" in MainScreen.qml)
+    noctalia.url = "github:noctalia-dev/noctalia-shell/5137c5efcac31d9aee6952b99f1dcaec9966fe21";
   };
 
   outputs = { self, nixpkgs, antigravity-nix, noctalia, ... }@inputs: {
