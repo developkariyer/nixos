@@ -13,4 +13,7 @@
 
   # direnv — auto-activates project devShells on cd
   programs.direnv.enable = true;
+
+  # AnyDesk remote desktop (temporary — remove when done)
+  services.anydesk.enable = true;
 }
