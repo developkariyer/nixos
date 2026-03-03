@@ -1,4 +1,8 @@
-# Ignore all .config except noctalia and niri
+# Ignore all .config except tracked tools
 .config/*
 !.config/noctalia/
 !.config/niri/
+!.config/autoretry/
+# Binary template image (user-specific, captured via setup)
+.config/autoretry/*.png
+.config/autoretry/*.log
