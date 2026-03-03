@@ -4,7 +4,7 @@
 {
   users.users.ubuntu = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "i2c" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "i2c" "docker" "ydotool" ];
     packages = with pkgs; [ tree ];
   };
 
