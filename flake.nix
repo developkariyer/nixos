@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Pinned to 1.18.4 (upstream is at 1.19.6; remove commit hash to unpin)
-    antigravity-nix.url = "github:jacopone/antigravity-nix/f29019bebf76cd9571ad29febfec658a1f842c4d";
+    antigravity-nix.url = "github:jacopone/antigravity-nix";
     # Pinned: d4941da has QML regression ("Non-existent attached object" in MainScreen.qml)
     noctalia.url = "github:noctalia-dev/noctalia-shell/5137c5efcac31d9aee6952b99f1dcaec9966fe21";
   };

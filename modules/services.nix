@@ -15,5 +15,17 @@
   programs.direnv.enable = true;
 
   # AnyDesk remote desktop (temporary — remove when done)
-  services.anydesk.enable = true;
+  environment.systemPackages = [ pkgs.anydesk ];
+  systemd.services.anydesk = {
+    description = "AnyDesk remote desktop daemon";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.anydesk}/bin/anydesk --service";
+      Restart = "on-failure";
+    };
+  };
+
+  # ydotoold — kernel-level input injection daemon for Wayland autoclicker
+  programs.ydotool.enable = true;
 }
