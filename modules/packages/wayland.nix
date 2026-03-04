@@ -20,5 +20,6 @@
     seahorse
     ydotool       # kernel-level input injection (Wayland-compatible autoclicker)
     imagemagick   # pixel template matching for dialog detection
+    xdotool       # X11 window automation (via XWayland for autoclicker)
   ];
 }

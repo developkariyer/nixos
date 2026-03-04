@@ -108,6 +108,13 @@ spawn-at-startup "slack"
 hotkey-overlay {
 }
 
+// Disable hot corners so ydotool absolute mouse moves don't trigger overview
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
