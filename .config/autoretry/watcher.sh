@@ -12,8 +12,8 @@ TEMPLATE="$CONFIG_DIR/retry_template.png"
 MATCHER="$CONFIG_DIR/matcher.py"
 LOG="$CONFIG_DIR/watcher.log"
 
-POLL_INTERVAL=10
-COOLDOWN=15
+POLL_INTERVAL=5
+COOLDOWN=10
 
 # ydotool uses half-pixel coordinates (divide pixel coords by 2)
 COORD_SCALE=2
@@ -47,7 +47,7 @@ warp_to_origin() {
 
     # Slam to (0,0)
     ydotool mousemove -x -20000 -y -20000
-    sleep 0.1
+    #sleep 0.1
 }
 
 detect_outputs() {
@@ -140,6 +140,19 @@ watch() {
     log "Watcher started. Template: ${tw}x${th}, scale: 1/${COORD_SCALE}"
     log "Outputs: ${OUTPUTS[*]}"
 
+    # Resolve python env once (avoids nix-shell overhead per poll)
+    log "Resolving Python environment..."
+    local python_env
+    python_env=$(nix-shell -p python3 python3Packages.opencv4 python3Packages.numpy \
+        --run 'echo "$(which python3)|$PYTHONPATH"' 2>/dev/null)
+    local python_bin="${python_env%%|*}"
+    local python_path="${python_env#*|}"
+    if [[ -z "$python_bin" || ! -x "$python_bin" ]]; then
+        echo "ERROR: Could not resolve python3 via nix-shell"
+        exit 1
+    fi
+    log "Python: $python_bin"
+
     while true; do
         log "Polling..."
 
@@ -157,10 +170,9 @@ watch() {
                 continue
             fi
 
-            # OpenCV template match via nix-shell
+            # OpenCV template match (using pre-resolved python + PYTHONPATH)
             local result
-            result=$(nix-shell -p python3 python3Packages.opencv4 python3Packages.numpy \
-                --run "python3 '$MATCHER' '$TEMPLATE' '$shot'" 2>/dev/null)
+            result=$(PYTHONPATH="$python_path" "$python_bin" "$MATCHER" "$TEMPLATE" "$shot" 2>/dev/null)
 
             if [[ "$result" == MATCH* ]]; then
                 local score lx ly
@@ -191,7 +203,7 @@ watch() {
 
                 # Relative move from origin to target (effectively global absolute)
                 ydotool mousemove -x "$btn_yx" -y "$btn_yy"
-                sleep 0.3
+                #sleep 0.3
                 ydotool click 0xC0
 
                 # Restore focus
@@ -210,7 +222,10 @@ watch() {
 
         rm -f /tmp/autoretry_*.png 2>/dev/null
 
-        if [[ "$found" -eq 0 ]]; then
+        if [[ "$found" -eq 1 ]]; then
+            log "Cooldown ${COOLDOWN}s..."
+            sleep "$COOLDOWN"
+        else
             sleep "$POLL_INTERVAL"
         fi
     done
