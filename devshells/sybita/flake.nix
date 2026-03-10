@@ -13,7 +13,7 @@
     {
       devShells.${system}.default = pkgs.mkShell {
         packages = [
-          pkgs.nodejs_20
+          pkgs.nodejs_22
         ];
       };
     };
