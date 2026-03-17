@@ -31,6 +31,6 @@
     # Utilities
     jq
     gnumake
-    drawio
+    # drawio  # temporarily disabled — Yarn CDN ECONNRESET
   ];
 }
