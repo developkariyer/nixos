@@ -6,5 +6,6 @@
     wireguard-tools
     openresolv
     ansible
+    iw # WiFi diagnostics (link status, power save, scan)
   ];
 }

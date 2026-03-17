@@ -24,12 +24,26 @@ def match(template_path, screenshot_path):
     tmpl_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
     shot_gray = cv2.cvtColor(screenshot, cv2.COLOR_BGR2GRAY)
 
+    th, tw = tmpl_gray.shape[:2]
     result = cv2.matchTemplate(shot_gray, tmpl_gray, cv2.TM_CCOEFF_NORMED)
-    _, max_val, _, max_loc = cv2.minMaxLoc(result)
 
-    if max_val >= THRESHOLD:
-        # max_loc is (x, y) of top-left corner of match
-        print(f"MATCH {max_val:.6f} {max_loc[0]} {max_loc[1]}")
+    # Find all matches via iterative peak suppression
+    matches = []
+    while True:
+        _, max_val, _, max_loc = cv2.minMaxLoc(result)
+        if max_val < THRESHOLD:
+            break
+        matches.append((max_val, max_loc[0], max_loc[1]))
+        # Zero out region around this peak so next iteration finds others
+        x, y = max_loc
+        result[
+            max(0, y - th // 2) : min(result.shape[0], y + th // 2),
+            max(0, x - tw // 2) : min(result.shape[1], x + tw // 2),
+        ] = 0
+
+    if matches:
+        for score, x, y in matches:
+            print(f"MATCH {score:.6f} {x} {y}")
         return 0
     else:
         print(f"NOMATCH {max_val:.6f}")

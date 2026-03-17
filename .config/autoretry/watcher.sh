@@ -12,7 +12,7 @@ TEMPLATE="$CONFIG_DIR/retry_template.png"
 MATCHER="$CONFIG_DIR/matcher.py"
 LOG="$CONFIG_DIR/watcher.log"
 
-POLL_INTERVAL=5
+POLL_INTERVAL=2
 COOLDOWN=10
 
 # ydotool uses half-pixel coordinates (divide pixel coords by 2)
@@ -158,6 +158,12 @@ watch() {
 
         local found=0
 
+        # Save focused window once before scanning all monitors
+        local prev_focus
+        prev_focus=$(niri msg --json windows 2>/dev/null | \
+            grep -oP '"id":\d+[^}]*"is_focused":true' | \
+            grep -oP '"id":\d+' | grep -oP '\d+')
+
         for i in "${!OUTPUTS[@]}"; do
             local output="${OUTPUTS[$i]}"
             local ox="${OUTPUT_X[$i]}"
@@ -170,55 +176,54 @@ watch() {
                 continue
             fi
 
-            # OpenCV template match (using pre-resolved python + PYTHONPATH)
+            # OpenCV template match — may return multiple MATCH lines
             local result
             result=$(PYTHONPATH="$python_path" "$python_bin" "$MATCHER" "$TEMPLATE" "$shot" 2>/dev/null)
 
-            if [[ "$result" == MATCH* ]]; then
-                local score lx ly
-                score=$(echo "$result" | awk '{print $2}')
-                lx=$(echo "$result" | awk '{print $3}')
-                ly=$(echo "$result" | awk '{print $4}')
+            # Parse all MATCH lines from output
+            while IFS= read -r line; do
+                if [[ "$line" == MATCH* ]]; then
+                    local score lx ly
+                    score=$(echo "$line" | awk '{print $2}')
+                    lx=$(echo "$line" | awk '{print $3}')
+                    ly=$(echo "$line" | awk '{print $4}')
 
-                # Button position in GLOBAL pixel coords (output offset + local match + bottom-right inward)
-                local btn_px=$((ox + lx + tw - 20))
-                local btn_py=$((oy + ly + th - 20))
+                    # Button position in GLOBAL pixel coords
+                    local btn_px=$((ox + lx + tw - 20))
+                    local btn_py=$((oy + ly + th - 20))
 
-                # Convert to ydotool coordinates (pixels / 2)
-                local btn_yx=$((btn_px / COORD_SCALE))
-                local btn_yy=$((btn_py / COORD_SCALE))
+                    # Convert to ydotool coordinates (pixels / 2)
+                    local btn_yx=$((btn_px / COORD_SCALE))
+                    local btn_yy=$((btn_py / COORD_SCALE))
 
-                log "MATCH on $output! score=$score, dialog=($lx,$ly)"
-                log "Click: global_px=($btn_px,$btn_py) ydotool=($btn_yx,$btn_yy)"
-                found=1
+                    log "MATCH on $output! score=$score, dialog=($lx,$ly)"
+                    log "Click: global_px=($btn_px,$btn_py) ydotool=($btn_yx,$btn_yy)"
 
-                # Save focused window to restore later
-                local prev_focus
-                prev_focus=$(niri msg --json windows 2>/dev/null | \
-                    grep -oP '"id":\d+[^}]*"is_focused":true' | \
-                    grep -oP '"id":\d+' | grep -oP '\d+')
+                    # Pause between clicks
+                    if [[ "$found" -eq 1 ]]; then
+                        sleep 0.2
+                    fi
+                    found=1
 
-                # Warp cursor to global origin (leftmost monitor)
-                warp_to_origin
+                    warp_to_origin
+                    ydotool mousemove -x "$btn_yx" -y "$btn_yy"
+                    ydotool click 0xC0
 
-                # Relative move from origin to target (effectively global absolute)
-                ydotool mousemove -x "$btn_yx" -y "$btn_yy"
-                #sleep 0.3
-                ydotool click 0xC0
-
-                # Restore focus
-                if [[ -n "$prev_focus" ]]; then
-                    niri msg action focus-window --id "$prev_focus" 2>/dev/null
-                    log "Restored focus to window $prev_focus"
+                    # Immediately restore focus so cursor returns
+                    if [[ -n "$prev_focus" ]]; then
+                        niri msg action focus-window --id "$prev_focus" 2>/dev/null
+                    fi
+                else
+                    log "$output: $line"
                 fi
-
-                break
-            else
-                log "$output: $result"
-            fi
+            done <<< "$result"
 
             rm -f "$shot" 2>/dev/null
         done
+
+        if [[ "$found" -eq 1 ]]; then
+            log "Restored focus to window $prev_focus"
+        fi
 
         rm -f /tmp/autoretry_*.png 2>/dev/null
 

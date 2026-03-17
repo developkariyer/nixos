@@ -3,7 +3,10 @@
 
 {
   # Configure network connections with nmcli or nmtui
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = false; # Prevents latency spikes on Intel iwlwifi
+  };
 
   # DNS resolution
   services.resolved.enable = true;
