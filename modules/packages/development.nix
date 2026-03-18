@@ -11,11 +11,26 @@
     glab
     gh
 
-    # Antigravity IDE
-    inputs.antigravity-nix.packages.${pkgs.system}.default
+    # Antigravity IDE (Patched for bwrap 0.11.0 double-mount bug)
+    (pkgs.symlinkJoin {
+      name = "antigravity-patched";
+      paths = [ inputs.antigravity-nix.packages.${pkgs.system}.default ];
+      postBuild = ''
+        # Remove the read-only symlink created by symlinkJoin
+        rm $out/bin/antigravity
+        
+        # Copy the actual wrapper script so we can modify it
+        cp ${inputs.antigravity-nix.packages.${pkgs.system}.default}/bin/antigravity $out/bin/antigravity
+        
+        # Make it writable so sed can edit it
+        chmod +w $out/bin/antigravity
+        
+        # Strip the redundant bwrap mount lines causing the crash
+        sed -i '/opengl-driver/d' $out/bin/antigravity
+      '';
+    })
 
-    # OpenCode AI terminal assistant
-    opencode
+    inputs.claude-code-nix.packages.${pkgs.system}.claude-code
 
     # Go development
     go
@@ -34,3 +49,4 @@
     # drawio  # temporarily disabled — Yarn CDN ECONNRESET
   ];
 }
+
