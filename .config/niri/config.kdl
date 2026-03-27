@@ -143,6 +143,7 @@ binds {
     Mod+P hotkey-overlay-title="PHPStorm" { spawn "phpstorm"; }
     // Mod+D hotkey-overlay-title="App Launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "emit" "launcher"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+Alt+P hotkey-overlay-title="Power Off Monitors" { power-off-monitors; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
